@@ -1,59 +1,269 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Marketshop
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Laravel-based E-Commerce Backend API
 
-## About Laravel
+A clean, structured Laravel backend for an online marketplace.
+Built with Repository pattern, Action classes, Services, API versioning (V1 & V2), Sanctum authentication, Fortify, Spatie Permission, and full test coverage using Pest.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Features
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- **Products Management**
+  CRUD products with images, stock, price, discount, SKU, soft deletes.
 
-## Learning Laravel
+- **Brands & Categories**
+  Full CRUD with relationships to products.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+- **Shopping Cart**
+  Cart + Cart Items management.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- **Wishlist**
+  User wishlist functionality.
 
-## Laravel Sponsors
+- **Orders & Order Items**
+  Order creation, management, and order items.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+- **Coupons**
+  Coupon system with usage tracking and validation rules.
 
-### Premium Partners
+- **Reviews**
+  Product reviews.
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+- **Payments**
+  Payment records and status handling.
 
-## Contributing
+- **Authentication & Authorization**
+  - Laravel Fortify
+  - Laravel Sanctum (API tokens)
+  - Social Authentication
+  - Two-Factor Authentication (2FA)
+  - Passkeys
+  - Spatie Laravel Permission (roles & permissions)
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+- **API Versioning**
+  Separate V1 and V2 API resources.
 
-## Code of Conduct
+- **Architecture**
+  - Actions (Create / Update / Delete)
+  - Repositories + Interfaces
+  - Services
+  - DTOs
+  - Policies
+  - Observers
+  - Events & Listeners
+  - Notifications
+  - Jobs
+  - Custom Validation Rules
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+- **Testing**
+  Comprehensive Feature & Unit tests (API + Actions + Repositories + Services) using **Pest**.
 
-## Security Vulnerabilities
+---
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## Tech Stack
+
+| Technology          | Purpose                       |
+|---------------------|-------------------------------|
+| Laravel             | Framework                     |
+| Laravel Sanctum     | API Authentication            |
+| Laravel Fortify     | Authentication scaffolding    |
+| Spatie Permission   | Roles & Permissions           |
+| Pest                | Testing                       |
+| Repository Pattern  | Data access layer             |
+| Action Classes      | Business logic encapsulation  |
+
+---
+
+## Project Structure
+
+```
+app/
+├── Actions/              # Create / Update / Delete actions
+├── DTOs/
+├── Events/
+├── Http/
+│   ├── Controllers/
+│   │   ├── Api/
+│   │   │   ├── V1/
+│   │   │   └── V2/
+│   │   ├── Auth/
+│   │   └── ...
+│   ├── Requests/
+│   └── Resources/
+├── Jobs/
+├── Listeners/
+├── Models/
+├── Notifications/
+├── Observers/
+├── Policies/
+├── Providers/
+├── Repositories/         # Interfaces + Implementations
+├── Rules/
+├── Services/
+└── ...
+```
+
+---
+
+## Requirements
+
+- PHP 8.2+
+- Composer
+- Node.js & NPM (for frontend assets if needed)
+- MySQL / SQLite / PostgreSQL
+- Redis (optional – for queues & cache)
+
+---
+
+## Installation
+
+```bash
+# Clone the repository
+git clone <repository-url>
+cd Marketshop
+
+# Install PHP dependencies
+composer install
+
+# Install Node dependencies (if using frontend assets)
+npm install
+
+# Copy environment file
+cp .env.example .env
+
+# Generate application key
+php artisan key:generate
+
+# Configure your database in .env
+# Then run migrations & seeders
+php artisan migrate --seed
+
+# Create storage link
+php artisan storage:link
+
+# (Optional) Run queue worker
+php artisan queue:work
+```
+
+---
+
+## API Endpoints
+
+All API routes are prefixed with `/api`.
+
+### Authentication
+
+- Sanctum token-based authentication
+- Fortify authentication endpoints
+- Social Auth
+- Two-Factor Authentication
+
+### API Resources (V1 & V2)
+
+| Resource    | Endpoint (example)          |
+|-------------|-----------------------------|
+| Brands      | `/api/V1/brands`            |
+| Categories  | `/api/V1/categories`        |
+| Products    | `/api/V1/products`          |
+| Carts       | `/api/V1/carts`             |
+| Cart Items  | `/api/V1/cartitems`         |
+| Orders      | `/api/V1/orders`            |
+| Order Items | `/api/V1/ordersitems`       |
+| Coupons     | `/api/V1/coupons`           |
+
+Same resources are available under `/api/V2/...`.
+
+Authenticated routes require `Authorization: Bearer {token}` header.
+
+---
+
+## Architecture Overview
+
+### 1. Repository Pattern
+
+All data access goes through repositories that implement interfaces.
+
+Bound in `RepositoryServiceProvider`.
+
+### 2. Action Classes
+
+Business logic for create / update / delete operations is isolated in Action classes under `app/Actions/`.
+
+### 3. Services
+
+Higher-level business logic and orchestration live in `app/Services/`.
+
+### 4. Events & Listeners
+
+- `OrderCreated` → stock deduction + notifications
+- `CouponUsed` → logging & notifications
+- Product & Brand related events
+
+### 5. Policies & Authorization
+
+Fine-grained authorization using Laravel Policies + Spatie Permission.
+
+---
+
+## Testing
+
+The project uses **Pest** for testing.
+
+```bash
+# Run all tests
+./vendor/bin/pest
+
+# Run specific test suite
+./vendor/bin/pest --group=api
+```
+
+### Covered areas
+
+- Feature tests for all API resources
+- Unit tests for Actions
+- Unit tests for Repositories
+- Unit tests for Services
+- Authentication flows
+
+---
+
+## Database
+
+Main tables:
+
+- `users`
+- `categories`
+- `brands`
+- `products`
+- `product_images`
+- `carts`
+- `cart_items`
+- `orders`
+- `orders_items`
+- `coupons`
+- `coupon_user`
+- `wishlists`
+- `reviews`
+- `payments`
+- Spatie permission tables
+- Sanctum personal access tokens
+- Two-factor & Passkeys tables
+
+---
+
+## Security Features
+
+- SQL Injection protection trait
+- Custom validation rules (price, quantity, coupon expiry, brand logo, ...)
+- Policies for every major model
+- Rate limiting on API routes
+- Soft deletes on products
+- Two-Factor Authentication
+- Passkeys support
+
+---
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+This project is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
